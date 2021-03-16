@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { useParams, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
@@ -20,21 +21,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 function ProductDetails() {
-  const id = 1
+  const { id } = useParams()
   const theme = useTheme()
+  const history = useHistory()
   const isMediumIp = useMediaQuery(theme.breakpoints.up('md'))
   const classes = useStyles()
   const [products, setProducts] = useState([])
+  const byeNow = () => history.push('/cart')
   useEffect(() => {
     const loadProduct = async () => {
       const { data } = await axios.get(
         `https://react-api-six.vercel.app/products/${id}`
       )
-      console.log(data);
+      console.log(data)
       setProducts(data)
     }
     loadProduct()
-  }, [])
+  }, [id])
   return (
     <Paper className={classes.root}>
       <Grid
@@ -64,7 +67,7 @@ function ProductDetails() {
                 color="primary"
                 aria-label="primary button group"
               >
-                <Button>Bye Now</Button>
+                <Button onClick={byeNow}>Bye Now</Button>
                 <Button>Add To Cart</Button>
               </ButtonGroup>
             </Grid>

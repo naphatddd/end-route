@@ -1,8 +1,6 @@
 import React from 'react'
 import { Container, Snackbar, Toolbar, Button } from '@material-ui/core'
-// import ProductList from 'modules/product/components/ProductList'
-// import ProductDetails from 'modules/product/components/ProductDetails'
-import Cart from 'modules/cart/components/Cart'
+import Routes from './Routes'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -16,9 +14,7 @@ function Content() {
     <main className={classes.content1}>
       <Container maxWidth="lg">
         <Toolbar />
-        {/* <ProductList /> */}
-        {/* <ProductDetails /> */}
-        <Cart />
+        <Routes />
         <Snackbar
           open
           message="hello"
